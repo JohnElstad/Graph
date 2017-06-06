@@ -1,8 +1,9 @@
 #include "Node.h"
 #include "Graph.h"
 
+//Graph Creator, John Elstad, June 6th
 
- 
+//adds an edge to the graph between two existing nodes 
 void Graph::add(char a, char b, int newWeight){
   Node* node1 = nodeLookup(a);
   Node* node2 = nodeLookup(b); 
@@ -11,6 +12,7 @@ void Graph::add(char a, char b, int newWeight){
     node1->add(node2,newWeight); 
   } 
 }
+//Adds a single node to the graph
 void Graph::add(char a){ 
   bool isNew = true;
  
@@ -30,6 +32,7 @@ void Graph::remove(char a, char b){
     node1->remove(node2); 
   } 
 }
+//removes the edge
 void Graph::remove(char a){
   
   Node* removeNode = nodeLookup(a);
@@ -46,12 +49,13 @@ void Graph::remove(char a){
       }
   }
 }
+//prints 
 void Graph::print(){
   for(vector<Node*>::iterator it = nodes.begin(); it != nodes.end(); it++){
     (*it)->print();
   }
 }
-
+//find the node using its name
 Node* Graph::nodeLookup(char a){
  
   for(vector<Node*>::iterator it = nodes.begin(); it != nodes.end(); it++){
@@ -61,6 +65,7 @@ Node* Graph::nodeLookup(char a){
   }
   return NULL;
 }
+
 bool removeSmaller(vector<Link*>* links, Link* link){
  
   for(vector<Link*>::iterator it = links->begin(); it != links->end(); it++){
@@ -92,7 +97,8 @@ void orderedAdd(vector<Link*>* links,Link* link){
     }
   }
 }
- void Graph::findPath(char a, char b){
+//finds the shortest path through the grid. See diekstas Algorithm for more info
+void Graph::findPath(char a, char b){
  
    Node* start = nodeLookup(a);
    Node* end = nodeLookup(b);
@@ -123,7 +129,7 @@ void orderedAdd(vector<Link*>* links,Link* link){
      Link* current = (*active.rbegin());
  
      vector<Link*> newLinks = current->next->getLinks();
- 
+     //ad them to the active list if they are new or smaller than the current smallest
      for(vector<Link*>::iterator it = newLinks.begin(); it != newLinks.end(); it++){
        Link* newLink = (*it);
        
@@ -146,7 +152,7 @@ void orderedAdd(vector<Link*>* links,Link* link){
      active.pop_back();
     
    }
- 
+   //when you find the last node, print out the path
    if((*complete.rbegin())->next == end){
      Node* nextPrint = end;
      cout << "The total weight was " << (*complete.rbegin())->weight << endl;

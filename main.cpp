@@ -20,7 +20,7 @@ int main(){
   while(running){
 
     cin.getline(input, 128);
-        
+    //Edge
     if(input[0] == 'e' || input[0] == 'E'){
       cout << "Give me 2 single character vertex names and a scalor with a space in between" << endl;
       cin.getline(input,10);
@@ -31,12 +31,14 @@ int main(){
       else cout << "Your input is wrong, the format should be, 'C' 'C' 'I'" << endl;
 
     }
+    //vertex
     else if(input[0] == 'v' || input[0] == 'V'){
       cout << "What is the single character name for the new Vertex" << endl;
       cin.getline(input,10);
       graph->add(input[0]);
 
     }
+    //delete
     else if(input[0] == 'd' || input[0] == 'D'){
       cout << "Give me one vertex name to delete or two to delete the edge between them" << endl;
       cin.getline(input,10);
@@ -48,6 +50,7 @@ int main(){
 	cout << "You mistyped something" << endl;
       }
     } 
+    //print
     else if(input[0] == 'p' || input[0] == 'P'){
       graph->print();
     } 
