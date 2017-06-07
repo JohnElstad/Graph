@@ -5,7 +5,8 @@
 
 #include "Node.h"
 #include "Graph.h"
-
+//John Elstad, Graph Creator, June 6th
+//This code is your basic graph creator that creates the graph then finds the shortest path. Creates a bunch of nodes and the paths between them. 
 
 
 using namespace std;
